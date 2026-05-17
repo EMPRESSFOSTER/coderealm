@@ -33,7 +33,7 @@ export default function PlayLevel() {
   const [html, setHtml] = useState(level.initialHtml);
   const [css, setCss] = useState(level.initialCss);
   const [js, setJs] = useState(level.initialJs);
-  const [activeTab, setActiveTab] = useState<"html" | "css" | "js">("html");
+  const [activeTab, setActiveTab] = useState<"html" | "css" | "js" | "preview">("html");
   const [showMentor, setShowMentor] = useState(true);
   const [missionComplete, setMissionComplete] = useState(false);
   const [hintIndex, setHintIndex] = useState(0);
@@ -156,16 +156,19 @@ export default function PlayLevel() {
 
         {/* Middle: Editor */}
         <div className="flex-1 flex flex-col min-w-0 border-r border-brand-cyan/10 relative">
-          <div className="h-10 bg-black/40 flex items-center px-4 gap-4 border-b border-white/5">
+          <div className="h-10 bg-black/40 flex items-center px-4 gap-4 border-b border-white/5 overflow-x-auto">
             {[
               { id: "html", label: "index.html", icon: Code2 },
               { id: "css", label: "styles.css", icon: Terminal },
               { id: "js", label: "main.js", icon: Play },
+              { id: "preview", label: "Preview", icon: Eye, mobileOnly: true },
             ].map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 h-full px-2 text-xs font-mono transition-all border-b-2 ${
+                className={`flex items-center gap-2 h-full px-2 text-xs font-mono transition-all border-b-2 whitespace-nowrap ${
+                  tab.mobileOnly ? "md:hidden" : ""
+                } ${
                   activeTab === tab.id 
                     ? "border-brand-cyan text-brand-cyan bg-brand-cyan/5" 
                     : "border-transparent text-slate-500 hover:text-slate-300"
@@ -185,6 +188,55 @@ export default function PlayLevel() {
             )}
             {activeTab === "js" && (
               <CodeEditor language="javascript" value={js} onChange={(v) => setJs(v || "")} />
+            )}
+            {activeTab === "preview" && (
+              <div className="absolute inset-0 p-4 md:hidden flex flex-col gap-4 overflow-y-auto bg-brand-dark">
+                <div className="h-[300px] flex-shrink-0">
+                  <LevelPreview html={html} css={css} js={js} />
+                </div>
+                <div className="flex-1 min-h-[150px] glass-panel rounded-xl border-slate-800 p-4 font-mono text-[10px] overflow-y-auto">
+                  <div className="flex items-center justify-between mb-2 border-b border-white/5 pb-2">
+                    <div className="flex items-center gap-2 text-slate-500">
+                      <Terminal className="w-3 h-3" />
+                      <span>TERMINAL_OUTPUT</span>
+                    </div>
+                    {validationResult && (
+                      <span className={`font-bold ${validationResult.passed ? 'text-green-400' : 'text-brand-magenta'}`}>
+                        SCORE: {validationResult.score}/100
+                      </span>
+                    )}
+                  </div>
+                  {!validationResult && !isSubmitting ? (
+                    <div className="space-y-1 text-slate-500/50">
+                      <p>&gt; Starting preview server...</p>
+                      <p>&gt; Hot-reload enabled</p>
+                      <p>&gt; Awaiting submission...</p>
+                    </div>
+                  ) : isSubmitting ? (
+                    <div className="space-y-2 text-brand-cyan animate-pulse">
+                      <p>&gt; Executing code analysis...</p>
+                      <p>&gt; Validating syntax constraints...</p>
+                    </div>
+                  ) : (
+                    <div className="space-y-2">
+                      {validationResult?.feedback?.map((f: string, i: number) => (
+                        <p key={i} className="text-green-400">{f}</p>
+                      ))}
+                      {!validationResult?.passed && (
+                        <>
+                          <p className="text-brand-magenta font-bold mt-4 tracking-widest uppercase italic">Corrections_Needed:</p>
+                          {validationResult?.corrections?.map((c: string, i: number) => (
+                            <p key={i} className="text-brand-magenta/80 flex gap-2">
+                              <span>&gt;</span>
+                              <span>{c}</span>
+                            </p>
+                          ))}
+                        </>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
             )}
           </div>
           
