@@ -675,7 +675,7 @@ input { background: transparent; border: 1px solid #00f3ff; color: white; paddin
       if (cleanJs.includes("config.shield=true") || cleanJs.includes("config['shield']=true")) { score += 40; feedback.push("✅ Shield activated."); }
       else corrections.push("Add the 'shield' property and set it to true.");
       
-      if (cleanCss = cleanJs.includes("config.power=9000") || cleanJs.includes("config['power']=9000")) { score += 30; feedback.push("✅ Power levels over 9000."); }
+      if (cleanJs.includes("config.power=9000") || cleanJs.includes("config['power']=9000")) { score += 30; feedback.push("✅ Power levels over 9000."); }
       else corrections.push("Update the 'power' property to 9000.");
       
       if (cleanJs.includes("deleteconfig.vulnerability") || cleanJs.includes("deleteconfig['vulnerability']")) { score += 30; feedback.push("✅ Vulnerability patched."); }
