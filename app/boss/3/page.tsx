@@ -122,21 +122,23 @@ export default function CSSBossBattle() {
       <div className="absolute inset-0 opacity-5 pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')]" />
 
       {/* Boss Status Bar */}
-      <div className="h-24 glass-panel border-b border-brand-magenta/30 flex items-center px-12 gap-12 relative overflow-hidden">
-        <div className="flex items-center gap-6">
-          <div className="w-16 h-16 rounded-xl bg-brand-magenta/10 border border-brand-magenta flex items-center justify-center">
-            <Skull className="w-10 h-10 text-brand-magenta" />
-          </div>
-          <div>
-            <h2 className="text-xl font-black text-white uppercase italic tracking-tighter">SPECIFICITY_MONSTER</h2>
-            <div className="flex items-center gap-2">
-              <div className="px-2 py-0.5 rounded bg-brand-magenta/20 text-[10px] text-brand-magenta font-bold border border-brand-magenta/30">ELITE_BOSS</div>
-              <div className="text-[10px] text-slate-500 font-mono">ID: 0xDEADBEEF</div>
+      <div className="min-h-[6rem] py-4 lg:py-0 lg:h-24 glass-panel border-b border-brand-magenta/30 flex flex-col lg:flex-row items-center px-4 lg:px-12 gap-4 lg:gap-12 relative overflow-hidden">
+        <div className="flex items-center gap-4 lg:gap-6 w-full lg:w-auto justify-between lg:justify-start">
+          <div className="flex items-center gap-4 lg:gap-6">
+            <div className="w-12 h-12 lg:w-16 lg:h-16 rounded-xl bg-brand-magenta/10 border border-brand-magenta flex items-center justify-center">
+              <Skull className="w-8 h-8 lg:w-10 lg:h-10 text-brand-magenta" />
+            </div>
+            <div>
+              <h2 className="text-lg lg:text-xl font-black text-white uppercase italic tracking-tighter">SPECIFICITY_MONSTER</h2>
+              <div className="flex items-center gap-2">
+                <div className="px-2 py-0.5 rounded bg-brand-magenta/20 text-[10px] text-brand-magenta font-bold border border-brand-magenta/30">ELITE_BOSS</div>
+                <div className="text-[10px] text-slate-500 font-mono hidden sm:block">ID: 0xDEADBEEF</div>
+              </div>
             </div>
           </div>
         </div>
 
-        <div className="flex-1">
+        <div className="flex-1 w-full lg:w-auto">
           <div className="flex justify-between items-end mb-2">
             <span className="text-xs font-bold text-brand-magenta flex items-center gap-2">
               <Target className="w-3 h-3" /> BOSS_INTEGRITY
@@ -151,7 +153,7 @@ export default function CSSBossBattle() {
           </div>
         </div>
 
-        <div className="w-64">
+        <div className="w-full lg:w-64">
           <div className="flex justify-between items-end mb-2">
             <span className="text-xs font-bold text-brand-cyan flex items-center gap-2">
               <ShieldCheck className="w-3 h-3" /> PLAYER_SHIELD
@@ -175,30 +177,30 @@ export default function CSSBossBattle() {
         </span>
       </div>
 
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex flex-col lg:flex-row overflow-hidden">
         {/* Editor Area */}
-        <div className="flex-1 flex flex-col border-r border-brand-magenta/20">
+        <div className="flex-1 flex flex-col border-b lg:border-b-0 lg:border-r border-brand-magenta/20 min-h-[300px]">
           <div className="h-10 bg-black/40 flex items-center px-4 border-b border-white/5">
              <span className="text-[10px] font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
                <Zap className="w-3 h-3 text-brand-yellow" /> Overwrite CSS
              </span>
           </div>
-          <div className="flex-1">
+          <div className="flex-1 relative">
             <CodeEditor language="css" value={css} onChange={(v) => setCss(v || "")} />
           </div>
-          <div className="p-6 bg-brand-magenta/5 border-t border-brand-magenta/20">
+          <div className="p-4 sm:p-6 bg-brand-magenta/5 border-t border-brand-magenta/20">
             <button 
               onClick={handleAttack}
-              className="w-full py-4 rounded-xl bg-brand-magenta text-white font-black uppercase tracking-[0.2em] hover:shadow-[0_0_30px_rgba(255,0,234,0.5)] transition-all flex items-center justify-center gap-3"
+              className="w-full py-3 sm:py-4 rounded-xl bg-brand-magenta text-white font-black text-sm sm:text-base uppercase tracking-widest sm:tracking-[0.2em] hover:shadow-[0_0_30px_rgba(255,0,234,0.5)] transition-all flex items-center justify-center gap-2 sm:gap-3"
             >
-              <Sword className="w-6 h-6" />
+              <Sword className="w-5 h-5 sm:w-6 sm:h-6" />
               EXECUTE_OVERRIDE_ATTACK
             </button>
           </div>
         </div>
 
         {/* Preview / Monster Area */}
-        <div className="w-[500px] xl:w-[600px] bg-black p-8 flex flex-col gap-6 relative">
+        <div className="w-full lg:w-[500px] xl:w-[600px] bg-black p-4 sm:p-8 flex flex-col gap-4 sm:gap-6 relative overflow-y-auto lg:overflow-visible">
           <div className="flex items-center justify-between">
             <h3 className="text-xs font-bold text-slate-500 uppercase tracking-widest flex items-center gap-2">
               <Flame className="w-4 h-4 text-orange-500" /> BATTLE_VISUALIZER

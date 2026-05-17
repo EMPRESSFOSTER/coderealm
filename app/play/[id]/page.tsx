@@ -79,12 +79,12 @@ export default function PlayLevel() {
     <div key={levelId} className="h-[calc(100vh-64px)] flex flex-col overflow-hidden">
       {/* Top Bar */}
       <div className="h-14 glass-panel border-b border-brand-cyan/10 flex items-center justify-between px-4">
-        <div className="flex items-center gap-4">
-          <Link href="/dashboard" className="p-2 hover:bg-white/5 rounded-lg transition-colors">
+        <div className="flex items-center gap-2 sm:gap-4 flex-1 min-w-0">
+          <Link href="/dashboard" className="p-2 hover:bg-white/5 rounded-lg transition-colors flex-shrink-0">
             <ArrowLeft className="w-5 h-5 text-slate-400" />
           </Link>
-          <div className="h-4 w-[1px] bg-white/10" />
-          <h1 className="font-mono text-sm font-bold tracking-tight text-brand-cyan">
+          <div className="h-4 w-[1px] bg-white/10 flex-shrink-0" />
+          <h1 className="font-mono text-xs sm:text-sm font-bold tracking-tight text-brand-cyan truncate">
             MISSION: {level.title.toUpperCase()}
           </h1>
         </div>

@@ -28,7 +28,7 @@ export default function Dashboard() {
     <div className="min-h-screen p-6 md:p-12 max-w-7xl mx-auto">
       {/* Header / Stats Bar */}
       <div className="grid grid-cols-1 lg:grid-cols-4 gap-6 mb-12">
-        <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border-brand-cyan/20 flex items-center gap-6">
+        <div className="lg:col-span-2 glass-panel p-6 rounded-2xl border-brand-cyan/20 flex flex-col sm:flex-row items-center gap-6 text-center sm:text-left">
           <div className="relative">
             <div className="w-20 h-20 rounded-full border-4 border-brand-cyan/30 flex items-center justify-center bg-brand-cyan/5">
               <span className="text-3xl font-bold neon-text">{level}</span>
@@ -76,14 +76,14 @@ export default function Dashboard() {
 
       {/* Main Map Section */}
       <div className="mb-12">
-        <div className="flex items-center justify-between mb-8">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
           <div className="flex items-center gap-3">
-            <MapIcon className="w-6 h-6 text-brand-cyan" />
-            <h2 className="text-2xl font-bold tracking-tight uppercase font-mono">Mission_Map</h2>
+            <MapIcon className="w-6 h-6 text-brand-cyan flex-shrink-0" />
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight uppercase font-mono">Mission_Map</h2>
           </div>
-          <div className="flex gap-2">
-            <button className="px-4 py-2 rounded-lg glass-panel text-xs font-mono border-brand-cyan/20 text-brand-cyan">ALL_REGIONS</button>
-            <button className="px-4 py-2 rounded-lg glass-panel text-xs font-mono border-slate-700 text-slate-500">BOSS_ONLY</button>
+          <div className="flex gap-2 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
+            <button className="px-4 py-2 rounded-lg glass-panel text-xs font-mono border-brand-cyan/20 text-brand-cyan whitespace-nowrap">ALL_REGIONS</button>
+            <button className="px-4 py-2 rounded-lg glass-panel text-xs font-mono border-slate-700 text-slate-500 whitespace-nowrap">BOSS_ONLY</button>
           </div>
         </div>
 
@@ -167,19 +167,19 @@ export default function Dashboard() {
               <div 
                 key={i} 
                 onClick={() => handleClaimQuest(i, quest.reward, quest.coins)}
-                className={`flex items-center justify-between p-4 rounded-xl border transition-all cursor-pointer group ${
+                className={`flex flex-col sm:flex-row items-start sm:items-center justify-between p-4 rounded-xl border transition-all cursor-pointer group gap-3 sm:gap-0 ${
                   completedQuests.includes(i) 
                     ? "bg-brand-cyan/5 border-brand-cyan/30 opacity-60" 
                     : "bg-white/5 border-white/5 hover:border-brand-cyan/30"
                 }`}
               >
-                <div className="flex items-center gap-4">
-                  <div className={`w-2 h-2 rounded-full ${completedQuests.includes(i) ? 'bg-brand-cyan' : 'bg-slate-600'}`} />
-                  <span className={`transition-colors ${completedQuests.includes(i) ? 'text-brand-cyan line-through' : 'text-slate-300 group-hover:text-white'}`}>
+                <div className="flex items-center gap-4 w-full sm:w-auto">
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${completedQuests.includes(i) ? 'bg-brand-cyan' : 'bg-slate-600'}`} />
+                  <span className={`transition-colors break-words text-sm sm:text-base ${completedQuests.includes(i) ? 'text-brand-cyan line-through' : 'text-slate-300 group-hover:text-white'}`}>
                     {quest.task}
                   </span>
                 </div>
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-4 w-full sm:w-auto justify-end sm:justify-start">
                   <span className="text-xs font-mono text-brand-cyan">
                     {completedQuests.includes(i) ? 'CLAIMED' : `+${quest.reward} XP`}
                   </span>

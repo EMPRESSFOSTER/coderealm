@@ -9,9 +9,9 @@ export default function TopNav() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 h-16 z-50 glass-panel border-b border-brand-cyan/20 flex items-center justify-between px-6">
-      <div className="flex items-center gap-2">
-        <Code2 className="w-6 h-6 text-brand-cyan" />
-        <Link href="/" className="text-xl font-bold font-mono tracking-tight text-white hover:text-brand-cyan transition-colors">
+      <div className="flex items-center gap-2 flex-1 min-w-0">
+        <Code2 className="w-5 h-5 sm:w-6 sm:h-6 text-brand-cyan flex-shrink-0" />
+        <Link href="/" className="text-lg sm:text-xl font-bold font-mono tracking-tight text-white hover:text-brand-cyan transition-colors truncate">
           CODE_REALM
         </Link>
       </div>
