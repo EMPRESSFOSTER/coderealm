@@ -4,7 +4,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useGameStore } from "@/store/useGameStore";
 import LevelCard from "@/components/LevelCard";
-import { Trophy, Zap, Coins, Sword, Map as MapIcon, ChevronRight, Gamepad2, Fingerprint } from "lucide-react";
+import { Trophy, Zap, Coins, Sword, Map as MapIcon, ChevronRight, Gamepad2, Fingerprint, TerminalSquare } from "lucide-react";
 import Link from "next/link";
 
 import { levels } from "@/constants/levels";
@@ -124,6 +124,23 @@ export default function Dashboard() {
             <div className="flex items-center text-xs text-brand-yellow font-mono gap-1">
               <Coins className="w-3 h-3" />
               <span>Up to +100 Credits</span>
+            </div>
+          </Link>
+
+          <Link href="/breach" className="glass-panel p-6 rounded-2xl border-brand-magenta/30 hover:border-brand-magenta hover:shadow-[0_0_20px_rgba(255,0,234,0.2)] transition-all group cursor-pointer block">
+            <div className="flex items-center gap-4 mb-4">
+              <div className="w-12 h-12 rounded-lg bg-brand-magenta/10 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <TerminalSquare className="w-6 h-6 text-brand-magenta" />
+              </div>
+              <div>
+                <h3 className="font-bold text-lg text-white">Terminal Breach</h3>
+                <p className="text-xs text-brand-magenta uppercase tracking-widest font-mono">Word Sequence</p>
+              </div>
+            </div>
+            <p className="text-sm text-slate-400 mb-4">Crack the firewall by guessing the 5-letter web development access code.</p>
+            <div className="flex items-center text-xs text-brand-yellow font-mono gap-1">
+              <Coins className="w-3 h-3" />
+              <span>+150 Credits</span>
             </div>
           </Link>
         </div>
